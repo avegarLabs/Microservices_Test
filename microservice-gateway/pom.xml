@@ -8,14 +8,14 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<groupId>com.avegarlabs.gateway</groupId>
-	<artifactId>microservice-gataway</artifactId>
+	<artifactId>microservice-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>microservice-gataway</name>
+	<name>microservice-gateway</name>
 	<description>Spring Boot Microservice Gateway</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.1</spring-cloud.version>
-	</properties>
+			</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -2,8 +2,6 @@ server:
   port: 8090
 
 spring:
-  application:
-    name: wastemanager-microservice
 
   datasource:
     url: jdbc:h2:mem:wastedb
@@ -15,8 +13,6 @@ spring:
   h2:
     console.enabled: true
 eureka:
-  instance:
-    hostname: localhost
   client:
     server-url:
-      defaultZone:http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka

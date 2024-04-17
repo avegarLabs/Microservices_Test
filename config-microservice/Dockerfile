@@ -1,3 +1,3 @@
 FROM openjdk:17-jdk-alpine
-COPY target/microservice-gateway-1.0-SNAPSHOT.jar api-gateway.jar
-ENTRYPOINT ["java", "-jar", "microservice-gateway.jar"]
+COPY target/config-microservice-0.0.1-SNAPSHOT.jar config-microservice.jar
+ENTRYPOINT ["java", "-jar", "config-microservice.jar"]
