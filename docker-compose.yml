@@ -1,0 +1,89 @@
+version: "3.9"
+
+services:
+ config-microservice:
+    image: 'config-microservice:1.0.0'
+    build: 
+      context: ./config-microservice
+    container_name: config-microservice
+    hostname: config-microservice
+    ports:
+      - "8888:8888"
+    networks:
+      - test-network
+    restart: always
+
+  naming-microservice:
+    image: 'naming-microservice:1.0.0'
+    build: 
+      context: ./naming-microservice
+    container_name: naming-microservice
+    hostname: naming-microservice
+    ports:
+      - "8761:8761"
+    expose:
+      - "8761"
+    depends_on:
+      - config-microservice
+    networks:
+      - test-network
+    restart: always
+
+  microservice-gateway:
+    image: 'microservice-gateway:1.0.0'
+    build: 
+      context: ./microservice-gateway
+    container_name: microservice-gateway
+    hostname: microservice-gateway
+    ports:
+      - "9000:9000"
+    expose:
+      - "9000"
+    depends_on:
+      - config-microservice
+      - naming-microservice
+    networks:
+      - test-network
+    restart: always
+    
+    
+    wastemanager-microservice:
+    image: 'wastemanager-microservice:1.0.0'
+    build: 
+      context: ./wastemanager-microservice
+    container_name: wastemanager-microservice
+    hostname: wastemanager-microservice
+    ports:
+      - "8090:8090"
+    expose:
+      - "8090"
+    depends_on:
+      - config-microservice
+      - naming-microservice
+      - microservice-gateway
+    networks:
+      - test-network
+    restart: always
+
+  wastemanageraddress-microservice:
+    image: 'wastemanageraddress-microservice:1.0.0'
+    build: 
+      context: ./wastemanageraddress-microservice
+    container_name: wastemanageraddress-microservice
+    hostname: wastemanageraddress-microservice
+    ports:
+      - "9090:9090"
+    expose:
+      - "8090"
+    depends_on:
+      - config-microservice
+      - naming-microservice
+      - microservice-gateway
+    networks:
+      - test-network
+    restart: always
+
+networks: 
+  test-network:
+    driver: bridge
+ 
