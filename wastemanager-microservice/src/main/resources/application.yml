@@ -1,0 +1,12 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: wastemanager-microservice
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://localhost:8888
+
+

@@ -1,0 +1,23 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: wastemanageraddress-microservice
+
+
+  datasource:
+    url: jdbc:h2:mem:wastemadb
+    username: sa
+    password: test123
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console.enabled: true
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    server-url:
+      defaultZone:http://localhost:8761/eureka

@@ -1,0 +1,29 @@
+server:
+  port: 9000
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enable: true
+      routes:
+        - id: wastemanager-microservice
+          uri: lb://wastemanager-microservice
+          predicates:
+            - Path=/api/wastemanager/**
+
+        - id: addressmanager-microservice
+          uri: lb://wastemanageraddress-microservice
+          predicates:
+            - Path=/api/addressmanager/**
+
+  application:
+    name: microservice-gateway
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    server-url:
+      defaultZone:http://localhost:8761/eureka
