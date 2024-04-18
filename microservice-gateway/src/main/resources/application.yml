@@ -3,10 +3,6 @@ spring:
     name: microservice-gateway
   profiles:
     active: dev
-
   config:
-    import: optional:configserver:http://config-serve:8888
-
-
-
+    import: optional:configserver:http://config-microservice:8888
 

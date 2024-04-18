@@ -12,7 +12,8 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
   h2:
     console.enabled: true
+
 eureka:
   client:
-    server-url:
-      defaultZone: http://localhost:8761/eureka
+    service-url:
+      defaultZone: http://naming-microservice:8761/eureka

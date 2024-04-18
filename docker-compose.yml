@@ -19,6 +19,8 @@ services:
       context: ./naming-microservice
     container_name: naming-microservice
     hostname: naming-microservice
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
     ports:
       - "8761:8761"
     expose:
@@ -35,6 +37,8 @@ services:
       context: ./microservice-gateway
     container_name: microservice-gateway
     hostname: microservice-gateway
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
     ports:
       - "9000:9000"
     expose:
@@ -46,31 +50,14 @@ services:
       - test-network
     restart: always
 
-
-  wastemanager-microservice:
-    image: 'wastemanager-microservice:1.0.0'
-    build:
-      context: ./wastemanager-microservice
-    container_name: wastemanager-microservice
-    hostname: wastemanager-microservice
-    ports:
-      - "8090:8090"
-    expose:
-      - "8090"
-    depends_on:
-      - config-microservice
-      - naming-microservice
-      - microservice-gateway
-    networks:
-      - test-network
-    restart: always
-
   wastemanageraddress-microservice:
     image: 'wastemanageraddress-microservice:1.0.0'
     build:
       context: ./wastemanageraddress-microservice
     container_name: wastemanageraddress-microservice
     hostname: wastemanageraddress-microservice
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
     ports:
       - "9090:9090"
     expose:
@@ -78,12 +65,30 @@ services:
     depends_on:
       - config-microservice
       - naming-microservice
-      - microservice-gateway
     networks:
       - test-network
     restart: always
 
+  wastemanager-microservice:
+      image: 'wastemanager-microservice:1.0.0'
+      build:
+        context: ./wastemanager-microservice
+      container_name: wastemanager-microservice
+      hostname: wastemanager-microservice
+      environment:
+        SPRING_PROFILES_ACTIVE: "dev"
+      ports:
+        - "8090:8090"
+      expose:
+        - "8090"
+      depends_on:
+        - config-microservice
+        - naming-microservice
+        - wastemanageraddress-microservice
+      networks:
+        - test-network
+      restart: always
+
 networks:
   test-network:
     driver: bridge
- 

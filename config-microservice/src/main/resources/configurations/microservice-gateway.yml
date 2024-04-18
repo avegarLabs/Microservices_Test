@@ -20,5 +20,5 @@ spring:
 
 eureka:
   client:
-    server-url:
-      defaultZone: http://localhost:8761/eureka
+    service-url:
+      defaultZone: http://naming-microservice:8761/eureka
